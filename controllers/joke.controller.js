@@ -21,7 +21,8 @@ const findOne = (req, res) => {
 
 const updateOne = (req, res) => {
   const { id } = req.params;
-  Joke.findByIdUpdate(id, req.body, { new: true, runValidators: true })
+  // dont trust yourself let it fill in
+  Joke.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
     .then((joke) => res.status(200).json(joke))
     .catch((err) => res.status(400).json(err));
 };
